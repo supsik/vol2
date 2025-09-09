@@ -15,6 +15,7 @@
 	>
 		<div class="app__header" @mousedown="handleMouseDown" @mouseup="handleMouseUp">
 			<img src="/icons/logo.svg" alt="fvprod" class="app__logo">
+			<span>{{ appProps.name }}</span>
 			<div class="app__panel">
 				<button class="app__panel-btn">
 					<img src="/icons/collapse.svg" alt="">
@@ -27,7 +28,7 @@
 				</button>
 			</div>
 		</div>
-		<slot />
+		<slot />	
 	</div>
 </template>
 <script setup>
@@ -88,18 +89,16 @@ const handleMouseUp = event => {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding-inline: 24px;
+	padding-left: 24px;
 	background-color: rgba($color: #000000, $alpha: .6);
 	user-select: none;
+	font-family: 'Montserrat';
+	font-size: 14px;
 }
 
 .app__logo { pointer-events: none }
 
-.app__panel {
-	position: absolute;
-	height: 100%;
-	right: 0;
-}
+.app__panel { height: 100% }
 
 .app__panel-btn {
 	width: 56px;

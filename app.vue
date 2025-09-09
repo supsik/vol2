@@ -1,6 +1,6 @@
 <template>
 	<NuxtLayout>
-		<div @mousemove="handleMouseMove">
+		<div class="main-frame" @mousemove="handleMouseMove">
 			<AppComponent
 				v-for="app in appsArray"
 				:key="app.name"
@@ -14,8 +14,8 @@
 <script setup>
 const appsArray = reactive({
 	consoleProps: {
-		name:          "Terminal",
-		component:     resolveComponent('AppsTerminal'),
+		name:           "Terminal",
+		component:      resolveComponent('AppsTerminal'),
 		sizes: {
 			isFullscreen  : false,
 			height        : 620,

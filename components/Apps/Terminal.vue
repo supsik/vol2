@@ -1,6 +1,11 @@
 <template>
-	<div class="console__content-wr">
-		<p class="console__content-header">created by <a href="#">FIVEPRODSTUDIO</a>™</p>
+	<div
+		class="console__content-wr"
+		ref="consoleBox"
+	>
+		<p class="console__content-header">
+			created by <a href="#">FIVEPRODSTUDIO</a>™
+		</p>
 		<pre class="console__content-star">
                             **                ************       
                           ****          *********************    
@@ -14,18 +19,26 @@
    ******           *****      ****                              
 ***                   **    **                                   </pre>
 		<div class="console__content">
-			<span class="message" v-for="msg in consoleHistory">
+			<span
+				class="message"
+				v-for="msg in consoleHistory"
+			>
 				{{ msg.message }}
 			</span>
 		</div>
 	</div>
 	<label class="console__input-wr">
 		<span>$oosa-player</span>
-		<input type="text" @keydown.enter="submit">
+		<input
+			type="text"
+			@keydown.enter="submit"
+		>
 	</label>
 </template>
 
 <script setup>
+const consoleBox = ref(null);
+
 const consoleHistory = ref([
 	{
 		type: 'notification',
@@ -33,18 +46,64 @@ const consoleHistory = ref([
 	}
 ])
 
-const commandsArray = ref(['test', 'help', 'coupon', 'shutdown'])
-
-const submit = event => {
+const submit = async event => {
 	const message = event.target.value;
 
-	if (!commandsArray.value.includes(message))
+	consoleHistory.value.push({
+		type: 'notification',
+		message: `$oosa-player> ${message}`
+	})
+
+	const command = commandsArray.value.find(el => el.name == message);
+
+	if (command) 
+		command.method()
+	else if (message)
 		consoleHistory.value.push({
 			type: 'notification',
 			message: `command «${message}» not found type «help» to view command list`
 		})
-	event.target.value = ''
+
+	event.target.value = '';
+
+	await nextTick();
+	consoleBox.value.scrollTop = consoleBox.value.scrollHeight;
 }
+
+const closeSite = () => {
+	console.log('test1');
+}
+
+const clearConsole = () => {
+	consoleHistory.value = []
+}
+
+const test = () => {
+	console.log('test1');
+}
+
+const showHelp = () => {
+	console.log('test1');
+}
+
+const commandsArray = ref([
+	{
+		name:   'shutdown',
+		method: closeSite,
+	},
+	{
+		name:   'clear',
+		method: clearConsole,
+	},
+	{
+		name:   'test',
+		method: test,
+	},
+	{
+		name:   'help',
+		method: showHelp,
+	}
+])
 </script>
 
 <style lang='scss'>
@@ -53,18 +112,14 @@ const submit = event => {
 	padding: 12px 16px 12px;
 	overflow-y: scroll;
 	font-family: 'Hasklig-Light';
-	line-height: 16px;
+	line-height: 16px; 
 
 	&::-webkit-scrollbar { width: 13px }
 	&::-webkit-scrollbar-track { background-color: rgba($color: #000000, $alpha: .3) }
 	&::-webkit-scrollbar-thumb { background-color: #111500 }
 }
 
-.console__content-header {
-	a {
-		color: $lightGreen;
-	}
-}
+.console__content-header a { color: $lightGreen }
 
 .console__content-star {
 	margin-block: 32px;
