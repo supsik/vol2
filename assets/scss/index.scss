@@ -1,0 +1,24 @@
+@import '_fonts';
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+button {
+	outline: none;
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
+}
+
+input {
+	background: transparent;
+	border: none;
+	color: #FFF;
+
+	&:focus {
+		outline: none;
+	}
+}
