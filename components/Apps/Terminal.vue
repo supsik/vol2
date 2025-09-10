@@ -25,13 +25,13 @@ const consoleBox = ref(null);
 
 const consoleHistory = ref([
 	{
-		type:    'notification',
+		type: 'notification',
 		message: `
 		<p class="console__content-header">
 			created by <a href="#">FIVEPRODSTUDIO</a>™
 		</p>
 		<pre class="console__content-star">
-                            **                ************       
+                             **                ************      
                           ****          *********************    
                        ******                     ***********    
                     *********                    *********       
@@ -41,10 +41,10 @@ const consoleHistory = ref([
         ******************              ****                     
       ********************         *****                         
    ******           *****      ****                              
-***                   **    **                                   </pre>`
+***                    ***  **                                    </pre>`
 	},
 	{
-		type:    'notification',
+		type: 'notification',
 		message: 'type «help» to view command list'
 	}
 ])

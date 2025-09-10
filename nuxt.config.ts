@@ -12,6 +12,8 @@ export default defineNuxtConfig({
 
 	devtools: { enabled: true },
 
+	modules: ['@pinia/nuxt'],
+
 	devServer: { port: 8080 },
 
 	vite: {

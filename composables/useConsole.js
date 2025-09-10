@@ -10,10 +10,10 @@ export function useConsole(consoleHistory) {
 			name: 'help',
 			method: () => {
 				const helpMessage =
-`<pre>Available command list:
+`<pre>Available commands list:
 
 <span>clear</span>    | Clear the console
-<span>help</span>     | Show this help message</pre>`;
+<span>help</span>     | Show commands list</pre>`;
 				consoleHistory.value.push({
 					type: 'notification',
 					message: helpMessage,
