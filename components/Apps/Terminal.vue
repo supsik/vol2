@@ -15,13 +15,15 @@
 		<span>$oosa-player</span>
 		<input
 			type="text"
+			ref="consoleInput"
 			@keydown.enter="submit"
 		>
 	</label>
 </template>
 
 <script setup>
-const consoleBox = ref(null);
+const consoleInput = ref(null);
+const consoleBox   = ref(null);
 
 const consoleHistory = ref([
 	{
@@ -76,9 +78,9 @@ const submit = async event => {
 	consoleBox.value.scrollTop = consoleBox.value.scrollHeight;
 }
 
-const clearConsole = () => {
-	consoleHistory.value = []
-}
+onMounted(() => {
+	consoleInput.value.focus();
+})
 </script>
 
 <style lang='scss'>
