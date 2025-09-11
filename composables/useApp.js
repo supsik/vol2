@@ -7,11 +7,16 @@ export function useApp() {
 		mainStore.setCurrentApp(closestApp || null);
 	}
 
+	const collapseAll = () => {
+		mainStore.appsArray.map(el => el.isCollapse = true);
+		mainStore.setCurrentApp(null);
+	}
+
 	const closeApp    = app => {
 		app.isOpen = !app.isOpen;
 		const closestApp = mainStore.appsArray.find(el => !el.isCollapse && el.isOpen)?.name
 		mainStore.setCurrentApp(closestApp || null);
 	}
 
-	return { collapseApp, closeApp };
+	return { collapseApp, closeApp, collapseAll };
 }

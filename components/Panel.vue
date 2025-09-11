@@ -13,15 +13,19 @@
 			</button>
 		</div>
 		<div class="panel__right">
-			<button class="collapse-all-apps">
+			<button class="collapse-all-apps" @click="collapseAll()">
 				<img src="/icons/collapse_all.svg" alt="">
 			</button>
-			<time>23:05</time>
+			<time>{{ time }}</time>
 		</div>
 	</div>
 </template>
 <script setup>
-const mainStore = useMainStore();
+const { collapseAll } = useApp();
+const mainStore       = useMainStore();
+
+const time = ref('');
+let timer;
 
 const changeAppStatus = app => {
 	if (!app.isOpen)
@@ -34,9 +38,25 @@ const changeAppStatus = app => {
 			app.isCollapse = false;
 	} else {
 		app.isCollapse = !app.isCollapse;
-		mainStore.setCurrentApp(mainStore.appsArray.find(el => !el.isCollapse).name);
+		mainStore.setCurrentApp(mainStore.appsArray.find(el => !el.isCollapse && el.isOpen)?.name || null);
 	}
 }
+
+const updateTime = () => {
+  const now = new Date();
+  const hours = now.getHours().toString().padStart(2, '0');
+  const minutes = now.getMinutes().toString().padStart(2, '0');
+  time.value = `${hours}:${minutes}`;
+}
+
+
+onMounted(() => {
+  timer = setInterval(updateTime, 1000);
+});
+
+onUnmounted(() => {
+  clearInterval(timer);
+});
 </script>
 <style lang='scss'>
 .panel {
@@ -101,7 +121,7 @@ const changeAppStatus = app => {
 	}
 }
 
-.radio-btn {
+.radio-btn img {
 	position: relative;
 	top: -2px;
 }
