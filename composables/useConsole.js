@@ -8,9 +8,9 @@ export function useConsole(consoleHistory) {
 				const helpMessage =
 `<pre>Available commands list:
 
-<span>clear</span>       | Clear the console
-<span>help</span>        | Show commands list
-<span>close_all</span>   | Close all apps</pre>`;
+<span>clear </span>         | clear the console
+<span>help </span>          | show commands list
+<span>close_all </span>     | close all apps</pre>`;
 				consoleHistory.value.push({
 					type: 'notification',
 					message: helpMessage,

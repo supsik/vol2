@@ -8,6 +8,7 @@
 				class="message"
 				v-for="msg in consoleHistory"
 				v-html="msg.message"
+				ref="message"
 			/>
 		</div>
 	</div>
@@ -24,6 +25,7 @@
 <script setup>
 const consoleInput = ref(null);
 const consoleBox   = ref(null);
+const message      = ref(null);
 
 const consoleHistory = ref([
 	{
