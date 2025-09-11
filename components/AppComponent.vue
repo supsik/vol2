@@ -1,7 +1,11 @@
 <template>
 	<div
-		@mousemove="handleMouseMove"
 		class="app-wr"
+		v-if="appProps.isOpen"
+		v-show="!appProps.isCollapse"
+		@mousemove="handleMouseMove"
+		@mousedown="mainStore.setCurrentApp(appProps.name)"
+		:class="{'current-app': mainStore.currentApp == appProps.name}"
 		:style="!appProps.sizes.isFullscreen ?
 		{
 			maxHeight:	`${appProps.sizes.height}px`,
@@ -17,13 +21,13 @@
 			<img src="/icons/logo.svg" alt="fvprod" class="app__logo">
 			<span>{{ appProps.name }}</span>
 			<div class="app__panel">
-				<button class="app__panel-btn">
+				<button class="app__panel-btn" @click="collapseApp(appProps)">
 					<img src="/icons/collapse.svg" alt="">
 				</button>
 				<button class="app__panel-btn" @click="appProps.sizes.isFullscreen = !appProps.sizes.isFullscreen">
 					<img src="/icons/fullscreen.svg" alt="">
 				</button>
-				<button class="app__panel-btn btn-close">
+				<button class="app__panel-btn btn-close" @click.stop="closeApp(appProps)" @mousedown.stop>
 					<img src="/icons/cross.svg" alt="">
 				</button>
 			</div>
@@ -32,9 +36,12 @@
 	</div>
 </template>
 <script setup>
+const { collapseApp, closeApp }  = useApp(); 
+const mainStore        = useMainStore();
+
 const isDragging = ref(false);
 
-const touchPos = reactive({
+const touchPos   = reactive({
 	xPos: 0,
 	yPos: 0,
 });
@@ -65,9 +72,7 @@ const handleMouseMove = event => {
   touchPos.yPos = event.y;
 }
 
-const handleMouseUp = event => {
-	isDragging.value = false
-}
+const handleMouseUp = () => isDragging.value = false;
 </script>
 <style lang='scss'>
 .app-wr {
@@ -75,11 +80,17 @@ const handleMouseUp = event => {
 	height: 100%;
 	max-width: 100%;
 	max-height: calc(100% - 36px);
+	position: absolute;
 	display: flex;
 	flex-direction: column;
+	background-color: #070800;
 	font-size: 12px;
 	color: #FFF;
-	background-color: rgba($color: #000000, $alpha: .5);
+
+	&.current-app {
+		z-index: 5;
+		background-color: #050600;
+	}
 }
 
 .app__header {

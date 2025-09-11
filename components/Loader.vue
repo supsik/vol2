@@ -19,8 +19,6 @@ onMounted(() => {
 			progress.value++;
 		else
 		{
-			console.log(mainStore);
-			
 			clearInterval(interval);
 			setTimeout(() => mainStore.setLoader(false), 1000)
 		}

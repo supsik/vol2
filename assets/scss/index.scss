@@ -6,6 +6,13 @@
 	box-sizing: border-box;
 }
 
+body { overflow: hidden }
+
+button,
+input,
+img,
+time { user-select: none }
+
 button {
 	outline: none;
 	border: none;
@@ -18,7 +25,5 @@ input {
 	border: none;
 	color: #FFF;
 
-	&:focus {
-		outline: none;
-	}
+	&:focus { outline: none }
 }
