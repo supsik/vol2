@@ -67,7 +67,7 @@ const submit = async event => {
 	else if (message)
 		consoleHistory.value.push({
 			type: 'notification',
-			message: `command «${message}» not found type «help» to view command list`
+			message: `command «${message}» not found. type «help» to view command list`
 		})
 
 	event.target.value = '';

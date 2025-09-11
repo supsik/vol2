@@ -9,9 +9,6 @@
 </template>
 <script setup>
 const mainStore = useMainStore();
-
-console.log(mainStore);
-
 </script>
 <style lang='scss'>
 .fade-enter-active,
