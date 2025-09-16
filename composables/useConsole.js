@@ -1,5 +1,5 @@
 export function useConsole(consoleHistory) {
-	const mainStore = useMainStore();
+	const mainStore = useAppStore();
 
 	const commandsArray = ref([
 		{

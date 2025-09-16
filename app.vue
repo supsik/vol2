@@ -12,12 +12,14 @@
 	</NuxtLayout>
 </template>
 <script setup>
-import AppsTerminal from '@/components/Apps/Terminal.vue'
+import AppsTerminal from '@/components/Apps/Terminal.vue';
+import AppsFiles    from '@/components/Apps/Files.vue';
 
-const mainStore = useMainStore();
+const mainStore = useAppStore();
 
 const componentsMap = {
   AppsTerminal,
+	AppsFiles,
 }
 </script>
 <style lang='scss'>

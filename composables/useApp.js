@@ -1,5 +1,5 @@
 export function useApp() {
-	const mainStore = useMainStore();
+	const mainStore = useAppStore();
 
 	const collapseApp = app => {
 		app.isCollapse = !app.isCollapse;

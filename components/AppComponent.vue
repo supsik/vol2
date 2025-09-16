@@ -6,16 +6,7 @@
 		@mousemove="handleMouseMove"
 		@mousedown="mainStore.setCurrentApp(appProps.name)"
 		:class="{'current-app': mainStore.currentApp == appProps.name}"
-		:style="!appProps.sizes.isFullscreen ?
-		{
-			maxHeight:	`${appProps.sizes.height}px`,
-			maxWidth:	`${appProps.sizes.width}px`,
-			transform: `translateY(${appProps.sizes.top}px) translateX(${appProps.sizes.left}px)`,
-			transition: 'max-width 0.3s ease, max-height 0.3s ease',
-		} :
-		{
-			transition: 'max-width 0.3s ease, max-height 0.3s ease, transform 0.3s ease',
-		}"
+		:style="appStyles"
 	>
 		<div class="app__header" @mousedown="handleMouseDown" @mouseup="handleMouseUp">
 			<img src="/icons/logo.svg" alt="fvprod" class="app__logo">
@@ -36,8 +27,8 @@
 	</div>
 </template>
 <script setup>
-const { collapseApp, closeApp }  = useApp(); 
-const mainStore        = useMainStore();
+const { collapseApp, closeApp } = useApp(); 
+const mainStore                 = useAppStore();
 
 const isDragging = ref(false);
 
@@ -45,6 +36,19 @@ const touchPos   = reactive({
 	xPos: 0,
 	yPos: 0,
 });
+
+const appStyles  = computed(() => {
+	return !props.appProps.sizes.isFullscreen ?
+		{
+			maxHeight  : `${props.appProps.sizes.height}px`,
+			maxWidth   : `${props.appProps.sizes.width}px`,
+			transform  : `translateY(${props.appProps.sizes.top}px) translateX(${props.appProps.sizes.left}px)`,
+			transition : 'max-width 0.3s ease, max-height 0.3s ease',
+		} :
+		{
+			transition : 'max-width 0.3s ease, max-height 0.3s ease, transform 0.3s ease',
+		}
+})
 
 const props = defineProps({
 	appProps: Object,
@@ -85,7 +89,6 @@ const handleMouseUp = () => isDragging.value = false;
 	flex-direction: column;
 	background-color: #070800;
 	font-size: 12px;
-	color: #FFF;
 
 	&.current-app {
 		z-index: 5;
@@ -105,6 +108,12 @@ const handleMouseUp = () => isDragging.value = false;
 	user-select: none;
 	font-family: 'Montserrat';
 	font-size: 14px;
+
+	span {
+		position: absolute;
+		left: calc(50% - 28px);
+		transform: translateX(-50%);
+	}
 }
 
 .app__logo { pointer-events: none }
@@ -119,5 +128,15 @@ const handleMouseUp = () => isDragging.value = false;
 	&.btn-close:hover { background-color: #660000 }
 
 	&:hover { opacity: 1 }
+}
+
+.app-fade-enter-active,
+.app-fade-leave-active {
+  transition: opacity 0.25s ease-out;
+}
+
+.app-fade-enter-from,
+.app-fade-leave-to {
+  opacity: 0;
 }
 </style>

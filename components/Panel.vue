@@ -22,7 +22,7 @@
 </template>
 <script setup>
 const { collapseAll } = useApp();
-const mainStore       = useMainStore();
+const mainStore       = useAppStore();
 
 const time = ref('');
 let timer;

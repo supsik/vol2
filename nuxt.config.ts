@@ -10,6 +10,8 @@ export default defineNuxtConfig({
 
 	css: ["assets/scss/index.scss"],
 
+	ssr: false,
+
 	devtools: { enabled: false },
 
 	modules: ['@pinia/nuxt'],
