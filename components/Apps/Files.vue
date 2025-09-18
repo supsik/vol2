@@ -1,12 +1,10 @@
 <template>
 	<div class="files__content-wr">
 		<ul class="files__list">
-			<li v-for="item in filesStore.fileSystem">
+			<li v-for="item in filesStore.fileSystem" :key="item.name">
 				<component
-					:content="item.content"
-					:name="item.name"
-					:extension="item"
 					:is="FilesMap[`Files${item.type}`]"
+					:appData="item"
 				/>
 			</li>
 		</ul>

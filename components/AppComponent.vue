@@ -5,7 +5,10 @@
 		v-show="!appProps.isCollapse"
 		@mousemove="handleMouseMove"
 		@mousedown="mainStore.setCurrentApp(appProps.name)"
-		:class="{'current-app': mainStore.currentApp == appProps.name}"
+		:class="{
+			'is-fullscreen': appProps.sizes.isFullscreen,
+			'current-app'  : mainStore.currentApp == appProps.name,
+		}"
 		:style="appStyles"
 	>
 		<div class="app__header" @mousedown="handleMouseDown" @mouseup="handleMouseUp">
@@ -23,7 +26,7 @@
 				</button>
 			</div>
 		</div>
-		<slot />	
+		<slot />
 	</div>
 </template>
 <script setup>
@@ -93,6 +96,14 @@ const handleMouseUp = () => isDragging.value = false;
 	&.current-app {
 		z-index: 5;
 		background-color: #050600;
+	}
+
+	&.is-fullscreen {
+		.off-app-wr {
+			img {
+				height: 80%;
+			}
+		}
 	}
 }
 

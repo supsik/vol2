@@ -9,7 +9,7 @@
 				}"
 				@click="changeAppStatus(app)"
 			>
-				<img :src="`icons/apps/${app.icon}.svg`" alt="">
+				<img :src="appIcon(app)" alt="">
 			</button>
 		</div>
 		<div class="panel__right">
@@ -49,14 +49,11 @@ const updateTime = () => {
   time.value = `${hours}:${minutes}`;
 }
 
+const appIcon = app => app.type == 'OffApp' ? app.icon : `icons/apps/${app.icon}.svg`;
 
-onMounted(() => {
-  timer = setInterval(updateTime, 1000);
-});
+onMounted(() => timer = setInterval(updateTime, 1000));
 
-onUnmounted(() => {
-  clearInterval(timer);
-});
+onUnmounted(() => clearInterval(timer));
 </script>
 <style lang='scss'>
 .panel {

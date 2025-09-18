@@ -2,19 +2,17 @@
 	<div class="folder-wr">
 		<button class="files__item" @click="isCollapsed = !isCollapsed">
 			<img src="/icons/files/folder__closed.svg" alt="" class="folder-icon">
-			<span>{{ name }}</span>
+			<span>{{ appData.name }}</span>
 		</button>
 		<ul class="files__list" :class="{'visible': !isCollapsed}">
 			<li
-				v-for="item in content"
+				v-for="item in appData.content"
 				:key="item.name"
 			>
 				<component
 					class="folder-item"
 					:is="FilesMap[`Files${item.type}`]"
-					:content="item.content"
-					:name="item.name"
-					:extension="item.ext"
+					:appData="item"
 				/>
 			</li>
 		</ul>
@@ -32,14 +30,10 @@ const FilesMap = {
 const isCollapsed = ref(true);
 
 const props = defineProps({
-	name: {
-		type      : String,
+	appData: {
+		type      : Object,
 		required  : true,
 	},
-	content: {
-		type      : Array,
-		required  : true,
-	}
 })
 </script>
 <style lang='scss'>

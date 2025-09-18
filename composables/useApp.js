@@ -13,7 +13,13 @@ export function useApp() {
 	}
 
 	const closeApp    = app => {
-		app.isOpen = !app.isOpen;
+		if (app.type != 'OffApp')
+			app.isOpen = !app.isOpen
+		else {
+			const index = mainStore.appsArray.findIndex(el => el === app);
+			index !== -1 && mainStore.appsArray.splice(index, 1);
+		}
+
 		const closestApp = mainStore.appsArray.find(el => !el.isCollapse && el.isOpen)?.name
 		mainStore.setCurrentApp(closestApp || null);
 	}
