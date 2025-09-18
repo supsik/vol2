@@ -101,7 +101,8 @@ const handleMouseUp = () => isDragging.value = false;
 	&.is-fullscreen {
 		.off-app-wr {
 			img {
-				height: 80%;
+				max-height: unset;
+				height: 100%;
 			}
 		}
 	}

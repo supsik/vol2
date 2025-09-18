@@ -17,6 +17,12 @@ export const useFilesStore = defineStore('files', () => {
 							path : '/pins/south_park.png',
 						},
 						{
+							name : 'marader',
+							type : 'App',
+							ext  : 'image',
+							path : '/pins/murder.png',
+						},
+						{
 							name : 'manhunt',
 							type : 'App',
 							ext  : 'image',

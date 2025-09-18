@@ -13,15 +13,15 @@ const props = defineProps({
 </script>
 <style lang='scss'>
 .off-app-wr {
-	height: 100%;
-	display: grid;
-	place-items: center;
+	height: calc(100% - 36px);
+	display: flex;
 
 	img {
 		width: 100%;
+		height: auto;
 		max-height: 584px;
 		object-fit: cover;
-		height: auto;
+		margin: auto;
 	}
 }
 </style>
