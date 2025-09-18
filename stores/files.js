@@ -15,16 +15,34 @@ export const useFilesStore = defineStore('files', () => {
 							type : 'App',
 							ext  : 'image',
 							path : '/pins/south_park.png',
+						},
+						{
+							name : 'manhunt',
+							type : 'App',
+							ext  : 'image',
+							path : '/pins/manhunt.png',
+						},
+						{
+							name : 'scull',
+							type : 'App',
+							ext  : 'image',
+							path : '/pins/scull.png',
+						},
+						{
+							name : 'cross',
+							type : 'App',
+							ext  : 'image',
+							path : '/pins/cross_drain.png',
 						}
 					]
 				},
-				{
-					name    : 'main_folder',
+				{ 
+					name    : 'user_files',
 					type    : 'Folder',
 					content : [
 						{
 							name : 'swagga',
-							type : 'app',
+							type : 'App',
 							ext  : 'textDoc',
 						},
 						{
@@ -35,7 +53,7 @@ export const useFilesStore = defineStore('files', () => {
 						},
 						{
 							name : 'resume',
-							type : 'app',
+							type : 'App',
 							ext  : 'pdf',
 						},
 					]

@@ -32,4 +32,9 @@ li { list-style: none }
 
 img.app-icon {
 	width: 16px;
+
+	&.app-icon-textDoc,
+	&.app-icon-pdf {
+		width: 14px;
+	}
 }
