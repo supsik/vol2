@@ -29,6 +29,18 @@ export const useFilesStore = defineStore('files', () => {
 							path : '/pins/manhunt.png',
 						},
 						{
+							name : 'jihad',
+							type : 'App',
+							ext  : 'image',
+							path : '/pins/jihad_girl.png',
+						},
+						{
+							name : 'jihad_mlya',
+							type : 'App',
+							ext  : 'image',
+							path : '/pins/dimidrol_ya_hui_znaet.png',
+						},
+						{
 							name : 'scull',
 							type : 'App',
 							ext  : 'image',

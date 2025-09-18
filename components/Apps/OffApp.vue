@@ -18,7 +18,7 @@ const props = defineProps({
 
 	img {
 		width: 100%;
-		height: auto;
+		aspect-ratio: 1;
 		max-height: 584px;
 		object-fit: cover;
 		margin: auto;

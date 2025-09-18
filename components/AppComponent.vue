@@ -100,10 +100,13 @@ const handleMouseUp = () => isDragging.value = false;
 
 	&.is-fullscreen {
 		.off-app-wr {
-			img {
-				max-height: unset;
-				height: 100%;
-			}
+			overflow-y: scroll;
+
+			&::-webkit-scrollbar { width: 13px }
+			&::-webkit-scrollbar-track { background-color: rgba($color: #000000, $alpha: .3) }
+			&::-webkit-scrollbar-thumb { background-color: #111500 }
+
+			img { max-height: unset }
 		}
 	}
 }
