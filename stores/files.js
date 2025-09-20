@@ -13,43 +13,43 @@ export const useFilesStore = defineStore('files', () => {
 						{
 							name : 'south_park',
 							type : 'App',
-							ext  : 'image',
+							ext  : 'Image',
 							path : '/pins/south_park.png',
 						},
 						{
 							name : 'marader',
 							type : 'App',
-							ext  : 'image',
+							ext  : 'Image',
 							path : '/pins/murder.png',
 						},
 						{
 							name : 'manhunt',
 							type : 'App',
-							ext  : 'image',
+							ext  : 'Image',
 							path : '/pins/manhunt.png',
 						},
 						{
 							name : 'jihad',
 							type : 'App',
-							ext  : 'image',
+							ext  : 'Image',
 							path : '/pins/jihad_girl.png',
 						},
 						{
 							name : 'jihad_mlya',
 							type : 'App',
-							ext  : 'image',
+							ext  : 'Image',
 							path : '/pins/dimidrol_ya_hui_znaet.png',
 						},
 						{
 							name : 'scull',
 							type : 'App',
-							ext  : 'image',
+							ext  : 'Image',
 							path : '/pins/scull.png',
 						},
 						{
 							name : 'cross',
 							type : 'App',
-							ext  : 'image',
+							ext  : 'Image',
 							path : '/pins/cross_drain.png',
 						}
 					]
@@ -59,39 +59,25 @@ export const useFilesStore = defineStore('files', () => {
 					type    : 'Folder',
 					content : [
 						{
-							name : 'swagga',
-							type : 'App',
-							ext  : 'textDoc',
-						},
-						{
-							name : 'swagga2',
-							type : 'App',
-							ext  : 'image',
-							path : '/pins/south_park.png',
+							name    : 'about_me',
+							type    : 'App',
+							ext     : 'TextDoc',
+							content : `
+								<h2>Всем привет, меня зовут Хасан!</h2>
+								<p>Я фронтенд разработчик с города Владикавказ. Занимаюсь разработкой больше трёх лет.</p>
+								<p>Всё что вы видите на данном ресурсе сделано мной с нуля. От дизайна до разработки сайта.</p>
+								<p>Если хотите со мной связаться, можете написать мне в телеграм: <a href='https://t.me/comradesteve'>@comradesteve</a></p>
+								<p>Также вы можете следить за жизнью проекта в моём тг канале: <a href='https://t.me/five_prod'>@five_prod<a></p>
+							`
 						},
 						{
 							name : 'resume',
 							type : 'App',
-							ext  : 'pdf',
+							ext  : 'Pdf',
+							path : 'resume.pdf'
 						},
 					]
-				},
-				{
-					name : 'logotip',
-					type : 'App',
-					ext  : 'svg',
-					path : '/logo.svg',
-				},
-				{
-					name : 'Musik1',
-					type : 'App',
-					ext  : 'musik',
-				},
-				{
-					name : 'Vol1',
-					type : 'App',
-					ext  : 'video',
-				},
+				}
 			]
 		}
 	])

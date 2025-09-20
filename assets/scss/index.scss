@@ -9,6 +9,13 @@
 
 body { overflow: hidden }
 
+body,
+label,
+button,
+a,
+option,
+select { cursor: none }
+
 button,
 input,
 img,
@@ -18,7 +25,6 @@ button {
 	outline: none;
 	border: none;
 	background-color: transparent;
-	cursor: pointer;
 }
 
 input {

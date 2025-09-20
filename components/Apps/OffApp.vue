@@ -1,15 +1,29 @@
 <template>
 	<div class="off-app-wr">
-		<img :src="`images${appData.path}`" alt="">
+		<component
+			:is='componentsMap[appData.ext]'
+			:content="appData.content"
+			:path="appData.path"
+		/>
 	</div>
 </template>
 <script setup>
+import TextDoc from '@/components/OffApp/TextDoc.vue';
+import Image   from '@/components/OffApp/Image.vue';
+import Pdf     from '@/components/OffApp/Pdf.vue';
+
 const props = defineProps({
 	appData: {
 		type      : Object,
 		required  : true,
 	}
 })
+
+const componentsMap = {
+	TextDoc,
+	Image,
+	Pdf
+}
 </script>
 <style lang='scss'>
 .off-app-wr {

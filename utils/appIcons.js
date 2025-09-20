@@ -1,19 +1,19 @@
 const fileIcons = {
-	textDoc  : '/icons/files/text-doc.svg',
-	video    : '/icons/files/video.svg',
-	musik    : '/icons/files/music.svg',
-	image    : '/icons/files/image.svg',
-	pdf      : '/icons/files/pdf.svg',
-	svg      : '/icons/files/svg.svg',
+	TextDoc  : '/icons/files/text-doc.svg',
+	Video    : '/icons/files/video.svg',
+	Musik    : '/icons/files/music.svg',
+	Image    : '/icons/files/image.svg',
+	Pdf      : '/icons/files/pdf.svg',
+	Svg      : '/icons/files/svg.svg',
 };
 
 const fileExtensions = {
-	textDoc  : 'txt',
-	video    : 'vid',
-	musik    : 'mp3',
-	image    : 'png',
-	pdf      : 'pdf',
-	svg      : 'svg',
+	TextDoc  : 'txt',
+	Video    : 'vid',
+	Musik    : 'mp3',
+	Image    : 'png',
+	Pdf      : 'pdf',
+	Svg      : 'svg',
 };
 
 export function getFileIcon(ext) {

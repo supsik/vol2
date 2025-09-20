@@ -33,10 +33,10 @@ const openMediaApp = () => {
 		appData     : props.appData,
 		sizes: {
 			isFullscreen  : false,
-			height        : 620,
-			width         : 620,
-			left          : 120,
-			top           : 70,
+			height        : props.appData.ext == 'Pdf' ? window.innerHeight : 620,
+			width         : props.appData.ext == 'Pdf' ? window.innerWidth : 620,
+			left          : props.appData.ext == 'Pdf' ? 0 : 120,
+			top           : props.appData.ext == 'Pdf' ? 0 : 70,
 		},
 	});
 
