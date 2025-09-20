@@ -9,6 +9,8 @@ const cursor = reactive({
 const updateCursor = (e: MouseEvent) => {
 	cursor.x = e.clientX;
 	cursor.y = e.clientY;
+	
+	cursor.isHidden = cursor.x == window.innerWidth || cursor.y == 0;
 };
 
 const checkCursorVisibility = (e: MouseEvent) => {
