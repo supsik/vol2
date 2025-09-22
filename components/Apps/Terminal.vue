@@ -96,6 +96,10 @@ onMounted(() => {
 	&::-webkit-scrollbar { width: 13px }
 	&::-webkit-scrollbar-track { background-color: rgba($color: #000000, $alpha: .3) }
 	&::-webkit-scrollbar-thumb { background-color: #111500 }
+
+	*::selection {
+		background-color: rgba($lightGreen, $alpha: .3);
+	}
 }
 
 .console__content-header a { color: $lightGreen }
