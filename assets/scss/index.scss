@@ -9,17 +9,19 @@
 
 body { overflow: hidden }
 
-body,
-label,
+textarea,
 button,
-a,
 option,
-select { cursor: none }
+select,
+input,
+label,
+body,
+a { cursor: none }
 
 button,
 input,
-img,
-time { user-select: none }
+time,
+img { user-select: none }
 
 button {
 	outline: none;

@@ -17,7 +17,6 @@ const updateCursor = e => {
 const checkCursorVisibility = (e) => {
   const target = e.target;
   cursor.type = target.closest("button, a, select") ? "pointer" : "default";
-  isHidden.value = !!target.closest("input, textarea");
 };
 
 onMounted(() => {
