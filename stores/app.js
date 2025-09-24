@@ -5,7 +5,7 @@ export const useAppStore = defineStore('app', () => {
 		{
 			name        : 'Terminal',
 			component   : 'AppsTerminal',
-			icon        : 'ConsoleApp',
+			icon        : '/icons/apps/ConsoleApp.svg',
 			isOpen      : true,
 			isCollapse  : false,
 			sizes: {
@@ -19,7 +19,7 @@ export const useAppStore = defineStore('app', () => {
 		{
 			name        : 'Files',
 			component   : 'AppsFiles',
-			icon        : 'FilesApp',
+			icon        : '/icons/apps/FilesApp.svg',
 			isOpen      : false,
 			isCollapse  : false,
 			sizes: {
@@ -33,7 +33,7 @@ export const useAppStore = defineStore('app', () => {
 		{
 			name        : 'Media Player',
 			component   : 'AppsMediaPlayer',
-			icon        : 'MediaApp',
+			icon        : '/icons/apps/MediaApp.svg',
 			isOpen      : false,
 			isCollapse  : false,
 			sizes: {
@@ -47,7 +47,7 @@ export const useAppStore = defineStore('app', () => {
 		{
 			name        : 'Radio Player',
 			component   : 'AppsRadioPlayer',
-			icon        : 'RadioApp',
+			icon        : '/icons/apps/RadioApp.svg',
 			isOpen      : false,
 			isCollapse  : false,
 			sizes: {
@@ -56,6 +56,20 @@ export const useAppStore = defineStore('app', () => {
 				width         : 1024,
 				left	        : 150,
 				top		        : 100,
+			}
+		},
+		{
+			name        : 'Audio Player',
+			component   : 'AppsAudioPlayer',
+			icon        : '/icons/apps/AudioApp.svg',
+			isOpen      : false,
+			isCollapse  : false,
+			sizes: {
+				isFullscreen  : false,
+				width         : 480,
+				height        : 290,
+				top		        : 180,
+				left	        : 420,
 			}
 		},
 	])

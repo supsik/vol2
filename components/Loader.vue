@@ -1,7 +1,7 @@
 <template>
 	<div class="loader">
 		<div class="loader__content">
-			<img src="/icons/logo.svg" alt="fvprod" class="app__logo">
+			<img src="/icons/Logo.svg" alt="fvprod" class="app__logo">
 			<div class="loader__bar">
 				<span v-for="step in progress" />
 			</div>

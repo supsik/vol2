@@ -12,45 +12,87 @@ export const useFilesStore = defineStore('files', () => {
 					content : [
 						{
 							name : 'south_park',
-							type : 'App',
+							type : 'Row',
 							ext  : 'Image',
 							path : '/pins/south_park.png',
+							sizes    : {
+								width  : 555,
+								height : 590,
+								top    : 165,
+								left   : 520,
+							}
 						},
 						{
 							name : 'marader',
-							type : 'App',
+							type : 'Row',
 							ext  : 'Image',
 							path : '/pins/murder.png',
+							sizes    : {
+								width  : 555,
+								height : 590,
+								top    : 165,
+								left   : 520,
+							}
 						},
 						{
 							name : 'manhunt',
-							type : 'App',
+							type : 'Row',
 							ext  : 'Image',
 							path : '/pins/manhunt.png',
+							sizes    : {
+								width  : 555,
+								height : 590,
+								top    : 165,
+								left   : 520,
+							}
 						},
 						{
 							name : 'jihad',
-							type : 'App',
+							type : 'Row',
 							ext  : 'Image',
 							path : '/pins/jihad_girl.png',
+							sizes    : {
+								width  : 555,
+								height : 590,
+								top    : 165,
+								left   : 520,
+							}
 						},
 						{
 							name : 'jihad_mlya',
-							type : 'App',
+							type : 'Row',
 							ext  : 'Image',
 							path : '/pins/dimidrol_ya_hui_znaet.png',
+							sizes    : {
+								width  : 555,
+								height : 590,
+								top    : 165,
+								left   : 520,
+							}
 						},
 						{
 							name : 'scull',
-							type : 'App',
+							type : 'Row',
 							ext  : 'Image',
 							path : '/pins/scull.png',
+							sizes    : {
+								width  : 555,
+								height : 590,
+								top    : 165,
+								left   : 520,
+							}
 						},
 						{
 							name : 'cross',
-							type : 'App',
+							type : 'Row',
 							ext  : 'Image',
 							path : '/pins/cross_drain.png',
+							sizes    : {
+								width  : 555,
+								height : 590,
+								top    : 165,
+								left   : 520,
+							}
 						}
 					]
 				},
@@ -60,7 +102,7 @@ export const useFilesStore = defineStore('files', () => {
 					content : [
 						{
 							name    : 'about_me',
-							type    : 'App',
+							type    : 'Row',
 							ext     : 'TextDoc',
 							content : `
 								<h2>Всем привет, меня зовут Хасан!</h2>
@@ -68,34 +110,40 @@ export const useFilesStore = defineStore('files', () => {
 								<p>Всё что вы видите на данном ресурсе сделано мной с нуля. От дизайна до разработки сайта.</p>
 								<p>Если хотите со мной связаться, можете написать мне в телеграм: <a href='https://t.me/comradesteve'>@comradesteve</a></p>
 								<p>Также вы можете следить за жизнью проекта в моём тг канале: <a href='https://t.me/five_prod'>@five_prod<a></p>
-							`
+							`,
+							sizes    : {
+								width  : 590,
+								height : 460,
+								top    : 165,
+								left   : 520,
+							}
 						},
 						{
 							name : 'resume',
-							type : 'App',
+							type : 'Row',
 							ext  : 'Pdf',
-							path : 'resume.pdf'
+							path : 'resume.pdf',
+							sizes    : {
+								width  : window.innerWidth,
+								height : window.innerHeight,
+								top    : 0,
+								left   : 0,
+							}
 						},
 					]
 				},
 				{ 
-					name     : 'musik',
+					name     : 'music',
 					type     : 'Folder',
 					content  : [
 						{
-							name : 'AudioPlayer',
-							type : 'App',
-							ext  : 'Musik',
+							name : 'Пошлая Молли - Супермаркет',
+							type : 'Row',
+							ext  : 'Music',
 							content  : {
 								title  : 'Пошлая Молли - Супермаркет',
 								path   : '/music/Molly/music.mp3',
 							},
-							sizes    : {
-								width  : 480,
-								height : 290,
-								top    : 240,
-								left   : 360,
-							} 
 						},
 					],
 				}

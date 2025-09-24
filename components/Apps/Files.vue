@@ -12,7 +12,7 @@
 </template>
 <script setup>
 import FilesFolder from '@/components/Files/Folder.vue';
-import FilesApp    from '@/components/Files/App.vue';
+import FilesApp    from '~/components/Files/Row.vue';
 
 const filesStore = useFilesStore();
 

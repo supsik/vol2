@@ -1,7 +1,7 @@
 <template>
 	<div class="folder-wr">
 		<button class="files__item" @click="isCollapsed = !isCollapsed">
-			<img src="/icons/files/folder__closed.svg" alt="" class="folder-icon">
+			<img src="/icons/files/FolderClosed.svg" alt="" class="folder-icon">
 			<span>{{ appData.name }}</span>
 		</button>
 		<ul class="files__list" :class="{'visible': !isCollapsed}">
@@ -20,11 +20,11 @@
 </template>
 <script setup>
 import FilesFolder from '@/components/Files/Folder.vue';
-import FilesApp    from '@/components/Files/App.vue';
+import FilesRow    from '~/components/Files/Row.vue';
 
 const FilesMap = {
   FilesFolder,
-	FilesApp
+	FilesRow
 }
 
 const isCollapsed = ref(true);

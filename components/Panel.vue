@@ -1,6 +1,6 @@
 <template>
 	<div class="panel">
-		<img src="/icons/logo.svg" alt="" class="panel__logo">
+		<img src="/icons/Logo.svg" alt="" class="panel__logo">
 		<div class="panel__apps">
 			<button v-for="app in mainStore.appsArray" :key="app.name" :class="{
 					'radio-btn': app.icon == 'RadioApp',
@@ -9,12 +9,12 @@
 				}"
 				@click="changeAppStatus(app)"
 			>
-				<img :src="appIcon(app)" alt="">
+				<img :src="app.icon" alt="">
 			</button>
 		</div>
 		<div class="panel__right">
 			<button class="collapse-all-apps" @click="collapseAll()">
-				<img src="/icons/collapse_all.svg" alt="">
+				<img src="/icons/CollapseAll.svg" alt="">
 			</button>
 			<time>{{ time }}</time>
 		</div>
@@ -43,13 +43,12 @@ const changeAppStatus = app => {
 }
 
 const updateTime = () => {
-  const now = new Date();
-  const hours = now.getHours().toString().padStart(2, '0');
+  const now     = new Date();
+  const hours   = now.getHours().toString().padStart(2, '0');
   const minutes = now.getMinutes().toString().padStart(2, '0');
-  time.value = `${hours}:${minutes}`;
-}
 
-const appIcon = app => app.type == 'OffApp' ? app.icon : `icons/apps/${app.icon}.svg`;
+  time.value = `${hours}: ${minutes}`;
+}
 
 onMounted(() => timer = setInterval(updateTime, 1000));
 

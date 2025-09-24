@@ -12,7 +12,7 @@ export function useApp() {
 		mainStore.setCurrentApp(null);
 	}
 
-	const closeApp    = app => {
+	const closeApp = app => {
 		if (app.type != 'OffApp')
 			app.isOpen = !app.isOpen
 		else {

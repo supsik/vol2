@@ -12,10 +12,10 @@
 	</NuxtLayout>
 </template>
 <script setup>
-import AppsTerminal from '@/components/Apps/Terminal.vue';
-import AudioPlayer  from '@/components/Apps/AudioPlayer.vue';
-import AppsFiles    from '@/components/Apps/Files.vue';
-import OffApp       from '@/components/Apps/OffApp.vue';
+import AppsAudioPlayer  from '@/components/Apps/AudioPlayer.vue';
+import AppsTerminal     from '@/components/Apps/Terminal.vue';
+import AppsFiles        from '@/components/Apps/Files.vue';
+import OffApp           from '@/components/Apps/OffApp.vue';
 
 const mainStore = useAppStore();
 
@@ -23,7 +23,7 @@ const mainStore = useAppStore();
 
 const componentsMap = {
   AppsTerminal,
-	AudioPlayer,
+	AppsAudioPlayer,
 	AppsFiles,
 	OffApp,
 }

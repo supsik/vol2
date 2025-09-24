@@ -12,17 +12,17 @@
 		:style="appStyles"
 	>
 		<div class="app__header" @mousedown="handleMouseDown" @mouseup="handleMouseUp">
-			<img src="/icons/logo.svg" alt="fvprod" class="app__logo">
+			<img src="/icons/Logo.svg" alt="fvprod" class="app__logo">
 			<span>{{ appProps.name }}</span>
 			<div class="app__panel">
 				<button class="app__panel-btn" @click="collapseApp(appProps)">
-					<img src="/icons/collapse.svg" alt="">
+					<img src="/icons/Collapse.svg" alt="">
 				</button>
 				<button class="app__panel-btn" @click="appProps.sizes.isFullscreen = !appProps.sizes.isFullscreen">
-					<img src="/icons/fullscreen.svg" alt="">
+					<img src="/icons/Fullscreen.svg" alt="">
 				</button>
 				<button class="app__panel-btn btn-close" @click.stop="closeApp(appProps)" @mousedown.stop>
-					<img src="/icons/cross.svg" alt="">
+					<img src="/icons/Cross.svg" alt="">
 				</button>
 			</div>
 		</div>
