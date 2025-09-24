@@ -19,6 +19,8 @@ import OffApp       from '@/components/Apps/OffApp.vue';
 
 const mainStore = useAppStore();
 
+// const { data } = await useFetch('/api/users'); // Запрос к серверу
+
 const componentsMap = {
   AppsTerminal,
 	AudioPlayer,
