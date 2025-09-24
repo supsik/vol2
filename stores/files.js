@@ -77,6 +77,27 @@ export const useFilesStore = defineStore('files', () => {
 							path : 'resume.pdf'
 						},
 					]
+				},
+				{ 
+					name     : 'musik',
+					type     : 'Folder',
+					content  : [
+						{
+							name : 'AudioPlayer',
+							type : 'App',
+							ext  : 'Musik',
+							content  : {
+								title  : 'Пошлая Молли - Супермаркет',
+								path   : '/music/Molly/music.mp3',
+							},
+							sizes    : {
+								width  : 480,
+								height : 290,
+								top    : 240,
+								left   : 360,
+							} 
+						},
+					],
 				}
 			]
 		}

@@ -22,21 +22,21 @@ const appIcon = ref(getFileIcon(props.appData.ext));
 
 const appName = ref(`${props.appData.name}.${getFileExtension(props.appData.ext)}`);
 
-const openMediaApp = () => {
+const openMediaApp = () => { 
 	appStore.appsArray.push({
 		name        : props.appData.name,
-		component   : 'OffApp',
-		type        : 'OffApp',
-		icon        : appIcon,
+		component   : props.appData.ext == 'Musik' ? 'AudioPlayer' : 'OffApp',
+		type        : props.appData.ext == 'Musik' ? 'AudioPlayer' : 'OffApp',
+		icon        : props.appData.name,
 		isOpen      : true,
 		isCollapse  : false,
 		appData     : props.appData,
 		sizes: {
 			isFullscreen  : false,
-			height        : props.appData.ext == 'Pdf' ? window.innerHeight : 620,
-			width         : props.appData.ext == 'Pdf' ? window.innerWidth : 620,
-			left          : props.appData.ext == 'Pdf' ? 0 : 120,
-			top           : props.appData.ext == 'Pdf' ? 0 : 70,
+			height        : props.appData.sizes.height,
+			width         : props.appData.sizes.width,
+			left          : props.appData.sizes.left,
+			top           : props.appData.sizes.top,
 		},
 	});
 

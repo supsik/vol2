@@ -1,7 +1,7 @@
 const fileIcons = {
 	TextDoc  : '/icons/files/text-doc.svg',
 	Video    : '/icons/files/video.svg',
-	Musik    : '/icons/files/music.svg',
+	Musik    : '/icons/files/musik.svg',
 	Image    : '/icons/files/image.svg',
 	Pdf      : '/icons/files/pdf.svg',
 	Svg      : '/icons/files/svg.svg',
