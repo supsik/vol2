@@ -1,11 +1,13 @@
 <template>
 	<div class="panel">
-		<img src="/icons/Logo.svg" alt="" class="panel__logo">
+		<button @click="mainStore.menuOpened = !mainStore.menuOpened">
+			<img src="/icons/Logo.svg" alt="" class="panel__logo">
+		</button>
 		<div class="panel__apps">
-			<button v-for="app in mainStore.appsArray" :key="app.name" :class="{
-					'radio-btn': app.icon == 'RadioApp',
+			<button v-for="app in appStore.appsArray" :key="app.name" :class="{
+					'radio-btn': app.name == 'Radio Player',
 					'is-open': app.isOpen,
-					'is-current': mainStore.currentApp == app.name,
+					'is-current': appStore.currentApp == app.name,
 				}"
 				@click="changeAppStatus(app)"
 			>
@@ -18,27 +20,39 @@
 			</button>
 			<time>{{ time }}</time>
 		</div>
+		<section
+			class="panel__menu"
+			ref="menu"
+			v-if="mainStore.menuOpened"
+		>
+			<button @click="mainStore.togglePopup('login')">
+				<img src="/icons/Profile.svg" alt="">
+			</button>
+		</section>
 	</div>
 </template>
 <script setup>
+import { onClickOutside } from '@vueuse/core';
 const { collapseAll } = useApp();
-const mainStore       = useAppStore();
+const mainStore       = useMainStore();
+const appStore        = useAppStore();
 
-const time = ref('');
+const time = ref(null);
+const menu = ref(null);
 let timer;
 
 const changeAppStatus = app => {
 	if (!app.isOpen)
 		app.isOpen = true;
 
-	if (mainStore.currentApp != app.name) {
-		mainStore.setCurrentApp(app.name);
+	if (appStore.currentApp != app.name) {
+		appStore.setCurrentApp(app.name);
 
 		if (app.isCollapse)
 			app.isCollapse = false;
 	} else {
 		app.isCollapse = !app.isCollapse;
-		mainStore.setCurrentApp(mainStore.appsArray.find(el => !el.isCollapse && el.isOpen)?.name || null);
+		appStore.setCurrentApp(appStore.appsArray.find(el => !el.isCollapse && el.isOpen)?.name || null);
 	}
 }
 
@@ -47,8 +61,12 @@ const updateTime = () => {
   const hours   = now.getHours().toString().padStart(2, '0');
   const minutes = now.getMinutes().toString().padStart(2, '0');
 
-  time.value = `${hours}: ${minutes}`;
+  time.value = `${hours}:${minutes}`;
 }
+
+onClickOutside(menu, () => {
+	mainStore.menuOpened = false;
+});
 
 onMounted(() => timer = setInterval(updateTime, 1000));
 
@@ -115,6 +133,19 @@ onUnmounted(() => clearInterval(timer));
 
 		&:hover { background-color: #2e370033 }
 	}
+}
+
+.panel__menu {
+	width: 320px;
+	height: 360px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	padding: 10px;
+	position: absolute;
+	left: 0;
+	bottom: 36px;
+	background-color: rgba($color: #000000, $alpha: .6);
 }
 
 .radio-btn img {

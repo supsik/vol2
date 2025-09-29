@@ -16,7 +16,7 @@ const updateCursor = e => {
 
 const checkCursorVisibility = (e) => {
   const target = e.target;
-  cursor.type = target.closest("button, a, select") ? "pointer" : "default";
+  cursor.type = target.closest("button, a, select, *[cursor-pointer]") ? "pointer" : "default";
 };
 
 onMounted(() => {
