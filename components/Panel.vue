@@ -25,7 +25,8 @@
 			ref="menu"
 			v-if="mainStore.menuOpened"
 		>
-			<button @click="mainStore.togglePopup('login')">
+			<button class="panel__profile" @click="checkUser">
+				<p class="user_name" v-if="userStore.user">{{ userStore.user.name }}</p>
 				<img src="/icons/Profile.svg" alt="">
 			</button>
 		</section>
@@ -35,11 +36,17 @@
 import { onClickOutside } from '@vueuse/core';
 const { collapseAll } = useApp();
 const mainStore       = useMainStore();
+const userStore       = useUserStore();
 const appStore        = useAppStore();
 
 const time = ref(null);
 const menu = ref(null);
 let timer;
+
+const checkUser = () => {
+	if (!userStore.user)
+		mainStore.togglePopup('login')
+}
 
 const changeAppStatus = app => {
 	if (!app.isOpen)
@@ -141,11 +148,27 @@ onUnmounted(() => clearInterval(timer));
 	display: flex;
 	flex-direction: column;
 	align-items: flex-end;
-	padding: 10px;
+	padding: 14px;
 	position: absolute;
 	left: 0;
 	bottom: 36px;
 	background-color: rgba($color: #000000, $alpha: .6);
+
+	.panel__profile {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+
+		button {
+			width: 16px;
+			height: 16px;
+		}
+
+		p {
+			font-family: "Montserrat-light";
+			font-size: 16px;
+		}
+	}
 }
 
 .radio-btn img {

@@ -1,6 +1,6 @@
 export const useRequest = (request, opts = {}) => {
 	const baseURL = useRuntimeConfig().public.REQUEST_API;
-	const token = btoa(`admin:adminpass`);
+	const token   = useCookie('user_token');
 	const phpsessid = useCookie('PHPSESSID');
 
 	const options = {
