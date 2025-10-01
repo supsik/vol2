@@ -33,7 +33,7 @@ const register = async event => {
 	else if (password != retryPassword)
 		return console.error('Пароли не совпадают');
 
-	const data = await $fetch('/api/register', {
+	const { data } = await useClientRequest('/api/register', {
 		method: 'POST',
 		body: {
 			name,
@@ -43,9 +43,6 @@ const register = async event => {
 
 	if (!data.success)
 		console.error("Произошла ошибка при регистрации");
-
-
-
 }
 </script>
 <style lang="scss"></style>

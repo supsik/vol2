@@ -14,7 +14,7 @@ export default defineNuxtConfig({
 
 				devtools: { enabled: false },
 
-				modules: ['@pinia/nuxt', "nuxt-toast"],
+				modules: ['@pinia/nuxt'],
 
 				devServer: { port: 8080 },
 
