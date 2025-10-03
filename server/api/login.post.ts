@@ -22,7 +22,7 @@ export default defineEventHandler(async (event) => {
 
   try {
     const [rows] = await connection.execute<RowDataPacket[]>(
-      'SELECT token FROM users WHERE name = ? AND password = ?',
+      'SELECT token FROM users WHERE login = ? AND password = ?',
       [login, password]
     );
 

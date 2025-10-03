@@ -20,33 +20,16 @@
 			</button>
 			<time>{{ time }}</time>
 		</div>
-		<section
-			class="panel__menu"
-			ref="menu"
-			v-if="mainStore.menuOpened"
-		>
-			<button class="panel__profile" @click="checkUser">
-				<p class="user_name" v-if="userStore.user">{{ userStore.user.name }}</p>
-				<SvgoProfile />
-			</button>
-		</section>
+		<Menu v-if="mainStore.menuOpened" />
 	</div>
 </template>
 <script setup>
-import { onClickOutside } from '@vueuse/core';
 const { collapseAll } = useApp();
 const mainStore       = useMainStore();
-const userStore       = useUserStore();
 const appStore        = useAppStore();
 
 const time = ref(null);
-const menu = ref(null);
 let timer;
-
-const checkUser = () => {
-	if (!userStore.user)
-		mainStore.togglePopup('login')
-}
 
 const changeAppStatus = app => {
 	if (!app.isOpen)
@@ -70,10 +53,6 @@ const updateTime = () => {
 
   time.value = `${hours}:${minutes}`;
 }
-
-onClickOutside(menu, () => {
-	mainStore.menuOpened = false;
-});
 
 onMounted(() => timer = setInterval(updateTime, 1000));
 
@@ -146,35 +125,6 @@ onUnmounted(() => clearInterval(timer));
 		&.is-current { background-color: #2e370080 }
 
 		&:hover { background-color: #2e370033 }
-	}
-}
-
-.panel__menu {
-	width: 320px;
-	height: 360px;
-	display: flex;
-	flex-direction: column;
-	align-items: flex-end;
-	padding: 14px;
-	position: absolute;
-	left: 0;
-	bottom: 36px;
-	background-color: rgba($color: #000000, $alpha: .6);
-
-	.panel__profile {
-		display: flex;
-		align-items: center;
-		gap: 12px;
-
-		button {
-			width: 16px;
-			height: 16px;
-		}
-
-		p {
-			font-family: "Montserrat-light";
-			font-size: 16px;
-		}
 	}
 }
 

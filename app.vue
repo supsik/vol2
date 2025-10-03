@@ -33,8 +33,6 @@ onMounted(async () => {
 	if (token.value) {
 		try {
 			const { user } = await useClientRequest('/api/user');
-			console.log(user);
-			
 			userStore.setUser(user);
 		} catch (e) {
 			console.log("Не удалось получить данные о пользователе", e);	

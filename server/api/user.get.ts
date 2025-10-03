@@ -1,7 +1,7 @@
 import mysql from 'mysql2/promise';
 import type { RowDataPacket } from 'mysql2/promise';
 
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(async event => {
 	const config = useRuntimeConfig();
 
 	const authHeader = getHeader(event, 'authorization');
@@ -23,7 +23,7 @@ export default defineEventHandler(async (event) => {
 	});
 
 	try {
-		const [ rows ] = await connection.execute<RowDataPacket[]>('SELECT name FROM users WHERE token = ?', [ token ]);
+		const [ rows ] = await connection.execute<RowDataPacket[]>('SELECT user_name, login, create_date FROM users WHERE token = ?', [ token ]);
 
 		const user = (rows as any)[0];
 

@@ -1,12 +1,5 @@
 <template>
   <div @contextmenu="customMenu">
-		<div class="login-popup" v-if="isOpen">
-			<button class="close-popup" @click="mainStore.togglePopup('login')">
-				<SvgoCross />
-			</button>
-			<FormsLogin v-if="authMode == 'login'" @switchMode="switchMode"/>
-			<FormsRegister v-if="authMode == 'register'" @switchMode="switchMode"/>
-		</div>
     <div class="main-frame">
       <slot />
     </div>
@@ -17,20 +10,26 @@
     <ClientOnly>
       <CustomCursor />
     </ClientOnly>
+		<div class="popup" v-if="mainStore.currentPopup">
+			<button class="close-popup" @click="mainStore.closePopup()">
+				<SvgoCross />
+			</button>
+			<component :is='popupsMap[mainStore.currentPopup]' />
+		</div>
   </div>
 </template>
 <script setup>
+import PopupsProfile from '@/components/Popups/Profile.vue';
+import PopupsLogin   from '@/components/Popups/Login.vue';
+
+const popupsMap = {
+	PopupsProfile,
+  PopupsLogin,
+}
+
 const mainStore = useMainStore();
 
-const authMode = ref('login')
-
-const isOpen = mainStore.getPopupState('login');
-
 const customMenu = e => e.preventDefault();
-
-const switchMode = value => {
-	authMode.value = value;
-}
 </script>
 <style lang="scss">
 .main-frame {
@@ -40,11 +39,13 @@ const switchMode = value => {
   background-color: $darkGreen;
 }
 
-.login-popup {
-	width: 380px;
-	padding-block: 46px 24px;
+.popup {
+	width: auto;
+	min-width: 200px;
+	height: auto;
+	min-height: 72px;
 	position: absolute;
-	z-index: 999;
+	z-index: 10;
 	top: 50%;
 	left: 50%;
 	display: flex;
@@ -56,42 +57,10 @@ const switchMode = value => {
 		position: absolute;
 		top: 14px;
 		right: 24px;
-	}
 
-	.login-form {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		font-family: 'Hasklig-Light';
-
-		input {
-			width: 260px;
-			height: 34px;
-			appearance: none;
-			background-color: #1A1E00 !important;
-			padding-left: 10px;
-			font-family: inherit;
-			font-size: 14px;
-		}
-
-		input + input { margin-top: 20px }
-
-		button {
-			padding: 6px 20px;
-			background-color: #516300;
-			margin-top: 20px;
-			font-size: 14px;
-			font-family: inherit;
-		}
-
-		p {
-			margin-top: 14px;
-			font-size: 10px;
-
-			span {
-				color: #516300;
-				text-decoration: underline;
-			}
+		svg {
+			width: 10px;
+			height: 10px;
 		}
 	}
 }

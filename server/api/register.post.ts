@@ -4,12 +4,16 @@ import { v4 as uuidv4 } from 'uuid';
 export default defineEventHandler(async (event) => {
 	const config = useRuntimeConfig();
 
-	const { name, password } = await readBody(event);
+	const {
+		login,
+		password,
+		user_name
+	} = await readBody(event);
 
-	if (!name || !password) {
+	if (!login || !password || !user_name) {
 		throw createError({
 			statusCode: 400,
-			message: 'Отсутствуют обязательные поля: name или password',
+			message: 'Отсутствуют обязательные поля',
 		});
 	}
 
@@ -22,8 +26,8 @@ export default defineEventHandler(async (event) => {
 	});
 
 	try {
-		const checkQuery = 'SELECT id FROM users WHERE name = ?';
-		const [rows]: any = await connection.execute(checkQuery, [name]);
+		const checkQuery = 'SELECT id FROM users WHERE login = ?';
+		const [rows]: any = await connection.execute(checkQuery, [login]);
 
 		if (rows.length > 0) {
 			throw createError({
@@ -31,18 +35,21 @@ export default defineEventHandler(async (event) => {
 				message: 'Пользователь с таким именем уже существует',
 			});
 		}
-		const token = uuidv4();
-		const insertQuery = 'INSERT INTO users (name, password, token) VALUES (?, ?, ?)';
-		await connection.execute(insertQuery, [name, password, token]);
-		await connection.end();
+
+		const token       = uuidv4();
+		const insertQuery = `
+		  INSERT INTO users
+		  (login, password, user_name, token, create_date)
+		  VALUES (?, ?, ?, ?, CURDATE())  -- CURDATE() вернёт текущую дату в формате YYYY-MM-DD
+		`;
+
+		await connection.execute(insertQuery, [login, password, user_name, token]);
 
 		return {
 			success: true,
 			token,
 		};
 	} catch (error: any) {
-		await connection.end();
-
 		console.error('Ошибка при выполнении запроса:', error);
 
 		if (error.statusCode)
@@ -52,5 +59,7 @@ export default defineEventHandler(async (event) => {
 			statusCode: 500,
 			message: 'Ошибка сервера при добавлении пользователя',
 		});
+	} finally {
+		await connection.end();
 	}
 });

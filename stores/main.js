@@ -1,32 +1,22 @@
 import { defineStore } from 'pinia';
 
 export const useMainStore = defineStore('main', () => {
-  const isLoading   = ref(true);
-	const menuOpened  = ref(false);
+	const currentPopup = ref(null);
+	const menuOpened   = ref(false);
+	const isLoading    = ref(true);
 
-	const popupsArray = reactive([
-		{
-			name   : 'login',
-			opened : false,
-		},
-	]);
+	const togglePopup  = popup => currentPopup.value = `Popups${popup}`;
 
-	const togglePopup = popup => {
-		const target = popupsArray.find(el => el.name == popup);
-		if (target)
-			target.opened = !target.opened;
-	};
-
-  const setLoader   = param => isLoading.value = param;
-
-	const getPopupState = popup => computed(() => popupsArray.find(el => el.name === popup)?.opened || false);
+	const closePopup   = () => currentPopup.value = null;
+	
+  const setLoader    = param => isLoading.value = param;
 
   return {
 		isLoading,
 		setLoader,
 		menuOpened,
-		popupsArray,
+		closePopup,
 		togglePopup,
-		getPopupState,
+		currentPopup,
 	}
 })

@@ -5,7 +5,8 @@ export const useUserStore = defineStore('user', () => {
 
 	const setUser = userData => {
 		user.value = {
-			name: userData.name
+			createDate  : userData.create_date,
+			userName    : userData.user_name,
 		}
 	};
 
