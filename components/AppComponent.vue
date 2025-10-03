@@ -11,18 +11,31 @@
 		}"
 		:style="appStyles"
 	>
-		<div class="app__header" @mousedown="handleMouseDown" @mouseup="handleMouseUp">
-			<img src="/icons/Logo.svg" alt="fvprod" class="app__logo">
+		<div
+			class="app__header"
+			@mousedown="handleMouseDown"
+			@mouseup="handleMouseUp"
+		>
+			<SvgoLogo class="app__icon" />
 			<span>{{ appProps.name }}</span>
 			<div class="app__panel">
-				<button class="app__panel-btn" @click="collapseApp(appProps)">
-					<img src="/icons/Collapse.svg" alt="">
+				<button
+					class="app__panel-btn"
+					@click="collapseApp(appProps)"
+				>
+					<SvgoCollapse class="svg-collapse"/>
 				</button>
-				<button class="app__panel-btn" @click="appProps.sizes.isFullscreen = !appProps.sizes.isFullscreen">
-					<img src="/icons/Fullscreen.svg" alt="">
+				<button
+					class="app__panel-btn"
+					@click="appProps.sizes.isFullscreen = !appProps.sizes.isFullscreen"
+				>
+					<SvgoFullscreen class="svg-fullscreen"/>
 				</button>
-				<button class="app__panel-btn btn-close" @click.stop="closeApp(appProps)" @mousedown.stop>
-					<img src="/icons/Cross.svg" alt="">
+				<button
+					class="app__panel-btn btn-close"
+					@click.stop="closeApp(appProps)" @mousedown.stop
+				>
+					<SvgoCross class="svg-close"/>
 				</button>
 			</div>
 		</div>
@@ -129,20 +142,39 @@ const handleMouseUp = () => isDragging.value = false;
 		left: calc(50% - 28px);
 		transform: translateX(-50%);
 	}
+
+	.app__icon {
+		width: 21px;
+		height: 12px;
+		margin: 0;
+	}
 }
 
-.app__logo { pointer-events: none }
-
-.app__panel { height: 100% }
+.app__panel {
+	height: 100%;
+	display: flex;
+}
 
 .app__panel-btn {
 	width: 56px;
 	height: 100%;
 	opacity: .3;
+	display: flex;
+
+	.svg-collapse {
+		position: relative;
+		top: 4px;
+	}
 
 	&.btn-close:hover { background-color: #660000 }
 
 	&:hover { opacity: 1 }
+
+	svg {
+		width: 10px;
+		height: 10px;
+		margin: auto;
+	}
 }
 
 .app-fade-enter-active,

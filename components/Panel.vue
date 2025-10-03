@@ -1,7 +1,7 @@
 <template>
 	<div class="panel">
 		<button @click="mainStore.menuOpened = !mainStore.menuOpened">
-			<img src="/icons/Logo.svg" alt="" class="panel__logo">
+			<SvgoLogo class="panel__logo"/>
 		</button>
 		<div class="panel__apps">
 			<button v-for="app in appStore.appsArray" :key="app.name" :class="{
@@ -16,7 +16,7 @@
 		</div>
 		<div class="panel__right">
 			<button class="collapse-all-apps" @click="collapseAll()">
-				<img src="/icons/CollapseAll.svg" alt="">
+				<SvgoCollapseAll />
 			</button>
 			<time>{{ time }}</time>
 		</div>
@@ -27,7 +27,7 @@
 		>
 			<button class="panel__profile" @click="checkUser">
 				<p class="user_name" v-if="userStore.user">{{ userStore.user.name }}</p>
-				<img src="/icons/Profile.svg" alt="">
+				<SvgoProfile />
 			</button>
 		</section>
 	</div>
@@ -97,6 +97,7 @@ onUnmounted(() => clearInterval(timer));
 .panel__logo {
 	width: 28px;
 	height: 16px;
+	margin: 0;
 }
 
 .panel__right {
@@ -113,6 +114,12 @@ onUnmounted(() => clearInterval(timer));
 		opacity: .3;
 
 		&:hover { opacity: 1 }
+
+		svg {
+			width: 10px;
+			height: 10px;
+			margin: 0;
+		}
 	}
 }
 

@@ -2,7 +2,7 @@
   <div @contextmenu="customMenu">
 		<div class="login-popup" v-if="isOpen">
 			<button class="close-popup" @click="mainStore.togglePopup('login')">
-				<img src="/icons/Cross.svg" alt="">
+				<SvgoCross />
 			</button>
 			<FormsLogin v-if="authMode == 'login'" @switchMode="switchMode"/>
 			<FormsRegister v-if="authMode == 'register'" @switchMode="switchMode"/>
