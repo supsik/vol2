@@ -46,3 +46,18 @@ img.app-icon {
 		width: 14px;
 	}
 }
+
+.error-messages {
+	width: 260px;
+	margin-top: 12px;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	
+	li {
+		list-style: '*';
+		font-size: 14px;
+		color: rgb(143, 0, 0);
+		padding-left: 10px;
+	}
+}

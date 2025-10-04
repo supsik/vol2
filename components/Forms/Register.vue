@@ -10,29 +10,34 @@
 			placeholder="Логин"
 			name="login"
 			id="login"
-			v-model="fields.login"
+			v-model="formFields.login"
 		/>
 		<input
 			type="password"
 			placeholder="Пароль"
 			name="password"
 			id="password"
-			v-model="fields.password"
+			v-model="formFields.password"
 		/>
 		<input
 			type="password"
 			placeholder="Повторите пароль"
 			name="retry-password"
 			id="retry-password"
-			v-model="fields.retryPassword"
+			v-model="formFields.retryPassword"
 		/>
 		<input
 			type="text"
 			placeholder="Введите имя пользователя"
 			name="name"
 			id="name"
-			v-model="fields.user_name"
+			v-model="formFields.user_name"
 		/>
+		<ul class="error-messages" v-if="errorMessages.length">
+			<li v-for="error in errorMessages">
+				{{ error }}
+			</li>
+		</ul>
 		<button type="submit">Присоединиться</button>
 		<p>
 			Уже есть учетная запись?
@@ -45,30 +50,34 @@ const token = useCookie('token');
 
 const emit = defineEmits(['switchMode']);
 
-const fields = ref({
-	login          : '',
+const formFields = ref({
+	login         : '',
 	password      : '',
 	retryPassword : '',
 	user_name     : '',
 })
 
-const register = async () => {
-	const hasEmptyFields = Object.keys(fields.value).some(key => !fields.value[key].trim());
+const errorMessages = ref([]);
 
-	if (hasEmptyFields)
-		return console.error('Вы заполнили не все данные');
-	else if (fields.value.password != fields.value.retryPassword)
-		return console.error('Пароли не совпадают');
-	if (fields.value.password.length < 6)
-		return console.error('Длина пароля должна быть минимум 6 символов');
+const register = async () => {
+	const hasEmptyformFields = Object.keys(formFields.value).some(key => !formFields.value[key].trim());
+
+	errorMessages.value = [];
+
+	if (hasEmptyformFields)
+		return errorMessages.value.push('Вы заполнили не все данные');
+	else if (formFields.value.password != formFields.value.retryPassword)
+		return errorMessages.value.push('Пароли не совпадают');
+	if (formFields.value.password.length < 6)
+		return errorMessages.value.push('Длина пароля должна быть минимум 6 символов');
 
 	try {
 		const data = await useClientRequest('/api/register', {
 			method: 'POST',
 			body: {
-				login      : fields.value.login,
-				password   : fields.value.password,
-				user_name  : fields.value.user_name,
+				login      : formFields.value.login,
+				password   : formFields.value.password,
+				user_name  : formFields.value.user_name,
 			}
 		})
 
@@ -79,4 +88,5 @@ const register = async () => {
 	}
 }
 </script>
-<style lang="scss"></style>
+<style lang="scss">
+</style>

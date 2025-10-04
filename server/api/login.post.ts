@@ -29,17 +29,16 @@ export default defineEventHandler(async (event) => {
     if (rows.length === 0) {
       throw createError({
         statusCode: 401,
-        message: 'Данный пользователь не существует',
+        message: 'Неверный логин или пароль',
       });
     }
 
     const token = rows[0].token;
     return { token };
   } catch (error: any) {
-    console.error('Ошибка при выполнении запроса:', error);
     throw createError({
-      statusCode: 500,
-      message: 'Ошибка сервера при проверке токена: ' + error.message,
+      statusCode: error.statusCode,
+      message: error.message,
     });
   } finally {
     await connection.end();
